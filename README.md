@@ -7,3 +7,4 @@
  criar o service: npx nest g s (nome do serviço)
  criar o controller: npx nest generate controller (nome do controlador)
  npm install --save multer
+ http://localhost:3000
