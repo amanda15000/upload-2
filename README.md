@@ -6,5 +6,6 @@
  subir o servidor: npx npm run start
  criar o service: npx nest g s (nome do serviço)
  criar o controller: npx nest generate controller (nome do controlador)
- npm install --save multer
+ baixar o multer: npm install --save multer
+ npm install @types/multer
  http://localhost:3000

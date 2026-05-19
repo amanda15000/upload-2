@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateArquivoDto } from './dto/create-arquivo.dto';
 import { UpdateArquivoDto } from './dto/update-arquivo.dto';
 import * as fs from 'fs';
 
 @Injectable()
 export class ArquivoService {
-  private readonly pastaUpload = './arquivos';
+  private readonly pastaUpload = './drive';
   
   constructor(){
     if(!fs.existsSync(this.pastaUpload)){
@@ -13,12 +13,35 @@ export class ArquivoService {
     }
   }
 
-  create(CreateArquivoDto: CreateArquivoDto) {
-    return 'This action adds a new arquivo';
+  create(arquivo:Express.Multer.File) {
+    return {
+      message:'Arquivo enviado com sucesso!',
+      filename:arquivo.filename,
+      originalname:arquivo.originalname,
+      size:arquivo.size,
+    };
   }
 
   findAll() {
-    return `This action returns all arquivo`;
+  try{
+    const files = fs.readdirSync(this.pastaUpload);
+    const fileList = files.map(
+      (filename)=>{
+        const stats = fs.statSync(`${this.pastaUpload}/${filename}`);
+        return{
+          filename,
+          size:stats.size,
+          criado:stats.birthtime,
+        }
+      }
+    );
+    return{
+      total:fileList.length,
+      files:fileList,
+    }
+  } catch (error){
+    throw new BadRequestException ('Não foi possível listar os arquivos.')
+  }
   }
 
   findOne(id: number) {
