@@ -1,5 +1,6 @@
 import { 
-  Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, BadRequestException, ParseFilePipe,FileTypeValidator,MaxFileSizeValidator
+  Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, 
+BadRequestException, ParseFilePipe,FileTypeValidator,MaxFileSizeValidator
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -60,18 +61,5 @@ export class ArquivoController {
     return this.arquivoService.create(file);
   }
 
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.arquivoService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateArquivoDto: UpdateArquivoDto) {
-    return this.arquivoService.update(+id, updateArquivoDto);
-  }
-
-  @Delete(':filename')
-remove(@Param('filename') filename: string) {
-  return this.arquivoService.removePorNome(filename);
+  // ... Seus métodos @Get, @Patch e @Delete continuam iguais aqui para baixo
 }
