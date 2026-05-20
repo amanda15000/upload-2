@@ -46,7 +46,7 @@ export class ArquivoService {
       });
     }
 
->>>>>>> 11e683940df8cbc6db8c6c2a7504c1b55fe2f19b
+
     return {
       message: 'Arquivo enviado com sucesso!',
       filename: arquivo.filename,
@@ -58,7 +58,7 @@ export class ArquivoService {
   findAll() {
     try {
       const files = fs.readdirSync(this.pastaUpload);
-<<<<<<< HEAD
+
       const fileList = files.map((filename) => {
         // Correção aqui: removido o "stats =" duplicado da linha 31
         const stats = fs.statSync(`${this.pastaUpload}/${filename}`);
