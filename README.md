@@ -8,4 +8,4 @@ Antes de começar, certifique-se de ter o ambiente de execução da sua tecnolog
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
+   git clone [https://github.com/julia-lw/upload](https://github.com/julia-lw/upload)
