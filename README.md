@@ -1,11 +1,11 @@
-# upload - gerenciador de arquivos
- baixar os pacotes do node: npx npm i -g @nestjs/cli
- instala todas as dependências (incluindo o node): npm install
- criar novo projeto: npx nest new (nome)
- criar recursos: npx nest generate resource (nome)
- subir o servidor: npx npm run start
- criar o service: npx nest g s (nome do serviço)
- criar o controller: npx nest generate controller (nome do controlador)
- baixar o multer: npm install --save multer
- npm install @types/multer
- http://localhost:3000
+<h1>Cloud Storage API ☁️</h1>
+
+API desenvolvida para gerenciamento e armazenamento de arquivos em nuvem, permitindo o upload seguro de imagens e remoção de arquivos via rotas HTTP.
+
+<h1> 🚀 Pré-requisitos e Instalação</h1>
+
+Antes de começar, certifique-se de ter o ambiente de execução da sua tecnologia instalado (ex: Node.js, PHP ou correspondente).
+
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
