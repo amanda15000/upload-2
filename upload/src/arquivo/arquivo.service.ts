@@ -93,7 +93,7 @@ export class ArquivoService {
     }
   }
 
-removePorNome(nome: string) {
+removerPorNome(nome: string) {
   const caminhoArquivo = `${this.pastaUpload}/${nome}`;
 
   if (!fs.existsSync(caminhoArquivo)) {
