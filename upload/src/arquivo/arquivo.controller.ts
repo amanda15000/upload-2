@@ -60,5 +60,22 @@ export class ArquivoController {
     return this.arquivoService.create(file);
   }
 
+<<<<<<< HEAD
   // ... Seus métodos @Get, @Patch e @Delete continuam iguais aqui para baixo
+=======
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.arquivoService.findOne(+id);
+  }
+
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateArquivoDto: UpdateArquivoDto) {
+    return this.arquivoService.update(+id, updateArquivoDto);
+  }
+
+  @Delete(':filename')
+remove(@Param('filename') filename: string) {
+  return this.arquivoService.removePorNome(filename);
+}
+>>>>>>> 11e683940df8cbc6db8c6c2a7504c1b55fe2f19b
 }
