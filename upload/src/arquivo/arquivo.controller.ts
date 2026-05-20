@@ -44,8 +44,8 @@ export class ArquivoController {
     return this.arquivoService.update(+id, updateArquivoDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.arquivoService.remove(+id);
-  }
+  @Delete(':filename')
+remove(@Param('filename') filename: string) {
+  return this.arquivoService.removePorNome(filename);
+}
 }
