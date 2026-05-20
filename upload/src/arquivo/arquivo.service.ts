@@ -25,7 +25,7 @@ export class ArquivoService {
       });
     }
 
-    const formatosPermitidos = ['image/jpeg', 'image/jpg', 'image/png', 'image/tiff'];
+    const formatosPermitidos = ['./jpeg', './jpg', './png', './tiff'];
     if (!formatosPermitidos.includes(arquivo.mimetype)) {
       throw new BadRequestException({
         erro: 'Formato inválido',
@@ -79,17 +79,6 @@ export class ArquivoService {
         erro: 'Não encontrado',
         mensagem: `Nenhum arquivo com o nome "${nome}" foi localizado.`,
       });
-    }
-
-    try {
-      fs.unlinkSync(caminhoArquivo);
-      
-      return {
-        sucesso: true,
-        mensagem: `O arquivo ${nome} foi removido com sucesso.`,
-      };
-    } catch (error) {
-      throw new BadRequestException('Não foi possível deletar o arquivo.');
     }
   }
 
