@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException, PayloadTooLargeException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateArquivoDto } from './dto/create-arquivo.dto';
 import { UpdateArquivoDto } from './dto/update-arquivo.dto';
 import * as fs from 'fs';
@@ -10,22 +10,16 @@ export class ArquivoService {
   
   constructor(){
     if(!fs.existsSync(this.pastaUpload)){
-      fs.mkdirSync(this.pastaUpload,{recursive:true});
+      fs.mkdirSync(this.pastaUpload, { recursive: true });
     }
   }
 
+  // =========================================================
+  // ITEM 1 & 2: CRIAÇÃO / CONFIRMAÇÃO DE UPLOAD
+  // =========================================================
   create(arquivo: Express.Multer.File) {
-    const limiteArquivo = 5 * 1024 * 1024;
-
-    if (arquivo.size>limiteArquivo){
-       if (fs.existsSync(arquivo.path)) fs.unlinkSync(arquivo.path);
-      throw new PayloadTooLargeException('O arquivo enviado ele passa o limite permitido de 5MB.');
-    }
-    const tiposPermitidos = ['./jpg','./png','./tiff','/.jpeg'];
-    const ext = arquivo.originalname.substring(arquivo.originalname.lastIndexOf('.')).toLowerCase();
-    if(!tiposPermitidos.includes(ext)){
-       throw new PayloadTooLargeException('Só são permetidos os arquivos jpg,png,tiff,jpeg');
-    }
+    // Como o Controller (Multer + ParseFilePipe) já valida tamanho e tipo perfeitamente,
+    // o Service só precisa receber o arquivo já gravado e retornar a resposta de sucesso!
     return {
       message: 'Arquivo enviado com sucesso!',
       filename: arquivo.filename,
@@ -34,11 +28,13 @@ export class ArquivoService {
     };
   }
 
+  // =========================================================
+  // LISTAGEM DE ARQUIVOS
+  // =========================================================
   findAll() {
     try {
       const files = fs.readdirSync(this.pastaUpload);
       const fileList = files.map((filename) => {
-        // Correção aqui: removido o "stats =" duplicado da linha 31
         const stats = fs.statSync(`${this.pastaUpload}/${filename}`);
         return {
           filename,
